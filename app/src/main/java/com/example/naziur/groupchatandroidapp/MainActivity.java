@@ -191,12 +191,10 @@ public class MainActivity extends AppCompatActivity {
     public void moveToChat() {
         Intent intent;
         Bundle extra = getIntent().getExtras();
-        if (extra != null) {
-            if (extra.getString("group_id") != null) {
-                intent = new Intent(MainActivity.this, ChatActivity.class);
-                intent.putExtra("group_id", extra.getString("group_id"));
-                startActivity(intent);
-            }
+        if (extra != null && extra.getString("group_id") != null) {
+            intent = new Intent(MainActivity.this, ChatActivity.class);
+            intent.putExtra("group_id", extra.getString("group_id"));
+            startActivity(intent);
         } else {
             intent = new Intent(MainActivity.this, ChatListActivity.class);
             startActivity(intent);
