@@ -71,6 +71,7 @@ public class CustomFirebaseMessageService extends FirebaseMessagingService {
 
     private void updateTokenOnServer(final String strToken){
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
         final DatabaseReference usersRef = database.getReference("users").orderByChild("email").equalTo(user.getEmail()).getRef();
         usersRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -96,6 +97,7 @@ public class CustomFirebaseMessageService extends FirebaseMessagingService {
                 }
             }
         });
+        }
     }
 
 }
